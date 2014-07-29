@@ -51,7 +51,7 @@
 
 #if defined(__APPLE__) && !defined(__FreeBSD__)
 // MAC OS X is Free BSD
-#define __FreeBSD__ 5
+// #define __FreeBSD__ 5
 #endif
 
 #ifndef _WINCE

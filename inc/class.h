@@ -205,12 +205,12 @@ typedef unsigned (*dbUDTHashFunction)(void const*, size_t);
                                           &dbDescribeComponentsOf##table)
 
 #define REGISTER_TEMPLATE_IN(table, database) \
-    GET_TABLE_DESC_PREFIX FASTDB_NS::dbTableDescriptor* dbGetTableDescriptor GET_TABLE_DESC_PARAM(table) \
-      { return &table::dbDescriptor; }            \
     static FASTDB_NS::dbFieldDescriptor* dbDescribeComponentsOf##table() \
       { return ((table*)0)->dbDescribeComponents(NULL); }     \
     TABLE_DESC_PREFIX FASTDB_NS::dbTableDescriptor table::dbDescriptor(#table, database, sizeof(table), \
-                                          &dbDescribeComponentsOf##table)
+                                          &dbDescribeComponentsOf##table);\
+    GET_TABLE_DESC_PREFIX FASTDB_NS::dbTableDescriptor* dbGetTableDescriptor GET_TABLE_DESC_PARAM(table) \
+      { return &table::dbDescriptor; }            
 
 #define REGISTER_IN_NS(ns, table, database)                     \
     GET_TABLE_DESC_PREFIX FASTDB_NS::dbTableDescriptor* dbGetTableDescriptor GET_TABLE_DESC_PARAM(ns::table) \
